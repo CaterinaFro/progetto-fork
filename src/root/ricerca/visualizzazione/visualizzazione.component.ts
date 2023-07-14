@@ -4,6 +4,9 @@ import { AjaxResponse } from 'rxjs/ajax';
 import {Libro} from '../../libro';
 import {Archivio} from '../../archivio';
 import {CommonModule} from '@angular/common'
+import {PrestaComponent} from './presta/presta.component';
+import {RestituisciComponent} from './restituisci/restituisci.component';
+
 
 @Component({
   selector: 'app-visualizzazione',
@@ -11,7 +14,7 @@ import {CommonModule} from '@angular/common'
   styleUrls: ['./visualizzazione.component.css'],
   standalone: true,
   providers: [DbLibriService],
-  imports: [CommonModule]
+  imports: [CommonModule, RestituisciComponent, PrestaComponent]
 
 })
 export class VisualizzazioneComponent implements OnInit {

@@ -5,15 +5,14 @@ import {Libro} from '../libro';
 import {Archivio} from '../archivio';
 import {CommonModule} from '@angular/common'
 import {VisualizzazioneComponent} from './visualizzazione/visualizzazione.component';
-import {NoleggioComponent} from './noleggio/noleggio.component';
-import {EliminaComponent} from './elimina/elimina.component';
+
 
 @Component({
   selector: 'app-ricerca',
   templateUrl: './ricerca.component.html',
   styleUrls: ['./ricerca.component.css'],
   imports: [
-    CommonModule, VisualizzazioneComponent, NoleggioComponent, EliminaComponent],
+    CommonModule, VisualizzazioneComponent],
   standalone: true,
   providers: [DbLibriService]
 })

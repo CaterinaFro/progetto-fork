@@ -5,3 +5,5 @@
   <p>{{ libroTrovato.autore }}</p>
   <!-- Other properties -->
 </div>
+<app-presta [libroTrovato]="libroTrovato" *ngIf="libroTrovato.disponibile"> </app-presta>
+<app-restituisci [libroTrovato]="libroTrovato" *ngIf="libroTrovato.disponibile"> </app-restituisci>
