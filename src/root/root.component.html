@@ -1,0 +1,19 @@
+<h3>
+  BIBLIOTECA
+</h3>
+<div>
+  <button (click)="ricerca()">Ricerca</button>
+  <button (click)="inserimento()">Inserimento</button> 
+</div>
+  <app-ricerca *ngIf="view =='ricerca'" (sezioneEvent) = "CleanEvent($event)">
+  </app-ricerca>
+  <app-inserimento *ngIf="view=='inserimento'" (sezioneEvent) = "CleanEvent($event)">
+  </app-inserimento>
+
+
+
+
+
+
+
+
