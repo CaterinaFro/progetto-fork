@@ -5,8 +5,15 @@
 </div>
 
 <p *ngIf ='digitazione !== "" && risultati.length >= 0 && risultati.length != 1'>Libri trovati: {{risultati.length}}</p>
-<app-visualizzazione [libroTrovato]="libroTrovato" *ngIf="risultati.length == 1"> </app-visualizzazione>
+<!--<app-visualizzazione [libroTrovato]="libroTrovato" *ngIf="risultati.length == 1"> </app-visualizzazione>-->
 <br>
+<div *ngIf ="risultati.length == 1 && risultato === true" >
+  <h3> Libro trovato: </h3>
+  <p><em>{{ libroTrovato.titolo }}</em></p>
+  <p>{{ libroTrovato.autore }}</p>
+</div>
+<!-- <app-presta [libroTrovato]="libroTrovato" *ngIf="libroTrovato.disponibile"> </app-presta>
+  <app-restituisci [libroTrovato]="libroTrovato" *ngIf="libroTrovato.disponibile"> </app-restituisci> -->
 <br>
 <br>
 <button (click)="clean()">Chiudi</button>

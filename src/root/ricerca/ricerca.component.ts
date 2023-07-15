@@ -4,7 +4,8 @@ import { AjaxResponse } from 'rxjs/ajax';
 import {Libro} from '../libro';
 import {Archivio} from '../archivio';
 import {CommonModule} from '@angular/common'
-import {VisualizzazioneComponent} from './visualizzazione/visualizzazione.component';
+import {PrestaComponent} from './presta/presta.component';
+import {RestituisciComponent} from './restituisci/restituisci.component';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {VisualizzazioneComponent} from './visualizzazione/visualizzazione.compon
   templateUrl: './ricerca.component.html',
   styleUrls: ['./ricerca.component.css'],
   imports: [
-    CommonModule, VisualizzazioneComponent],
+    CommonModule, PrestaComponent, RestituisciComponent],
   standalone: true,
   providers: [DbLibriService]
 })
@@ -38,7 +39,7 @@ constructor(private dbls: DbLibriService) { }
 
 
   ricercalibro() {
-    // controllo che se l'input è vuoto l'elenco libri venga svuotato per non mostrarli 
+    // controllo che se l'input è vuoto l'elenco libri venga svuotato per non mostrarli
     var cerca: HTMLInputElement = document.getElementById('campo-ricerca') as HTMLInputElement;
     this.digitazione = cerca.value
     if (this.digitazione == "") {
