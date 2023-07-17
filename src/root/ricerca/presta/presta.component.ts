@@ -15,10 +15,13 @@ import {CommonModule} from '@angular/common'
 export class PrestaComponent {
   //@Output() sezioneEvent = new EventEmitter<boolean>();
   @Input() libroTrovato: Libro = new Libro("", "", "", "");
-  @Output() libroPrestatoEvent = new EventEmitter<boolean>();//x far comunicare presta-elimina
+  //@Output() libroPrestatoEvent = new EventEmitter<boolean>();//x far comunicare presta-elimina
 
   messaggio : string = '';
   op_effettuata: boolean = false;
+  eliminato: boolean = false;
+  prestato: boolean = false;
+
 
   constructor(private dbls: DbLibriService) { }
 
@@ -42,7 +45,7 @@ export class PrestaComponent {
         next: (x: AjaxResponse<any>) => {
           this.messaggio = 'libro prestato';
           this.op_effettuata = true;
-          this.libroPrestatoEvent.emit(true);
+          this.prestato =true;
         return;
         },
         error: (err) =>
@@ -53,9 +56,8 @@ export class PrestaComponent {
       console.error('Observer got an error: ' + JSON.stringify(err)),
   });
   }
-}
 
-  /*elimina(){
+  elimina(){
     // richiedo l'archivio vuoto
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
@@ -70,8 +72,9 @@ export class PrestaComponent {
         //ricarico la nuova libreria tramite la SET
         this.dbls.setData(nuova_lib).subscribe({
           next: (x: AjaxResponse<any>) => {
-            this.messaggio1 = 'libro eliminato';
-            this.libroEliminato = true;
+            this.messaggio = 'libro eliminato';
+            this.op_effettuata = true;
+            this.eliminato =true;
           return;
 
           },
@@ -87,4 +90,3 @@ export class PrestaComponent {
 
 }
 
-*/

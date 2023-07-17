@@ -16,14 +16,11 @@ import {CommonModule} from '@angular/common'
 })
 export class InserimentoComponent {
   @Output() sezioneEvent = new EventEmitter<boolean>();
-  @Output() nuovoLibroEvent = new EventEmitter<Libro>(); //?
-  //errore : string = '';
+  //@Output() nuovoLibroEvent = new EventEmitter<Libro>(); //??
   messaggio : string = '';
   inserito : boolean = true;
 
   constructor(private dbls: DbLibriService) { } 
-
-  //ngOnInit() {}
 
   clean() {
     this.sezioneEvent.emit(true);

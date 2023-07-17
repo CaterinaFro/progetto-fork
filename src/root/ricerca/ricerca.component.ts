@@ -6,14 +6,14 @@ import {Archivio} from '../archivio';
 import {CommonModule} from '@angular/common'
 import {PrestaComponent} from './presta/presta.component';
 import {RestituisciComponent} from './restituisci/restituisci.component';
-import {EliminaComponent} from './elimina/elimina.component';
+//import {EliminaComponent} from './elimina/elimina.component';
 
 @Component({
   selector: 'app-ricerca',
   templateUrl: './ricerca.component.html',
   styleUrls: ['./ricerca.component.css'],
   imports: [
-    CommonModule, PrestaComponent, RestituisciComponent, EliminaComponent],
+    CommonModule, PrestaComponent, RestituisciComponent],
   standalone: true,
   providers: [DbLibriService]
 })

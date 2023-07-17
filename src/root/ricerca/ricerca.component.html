@@ -14,7 +14,7 @@
   <p> posizione: {{ libroTrovato.posizione }} </p>
 </div>
 <app-presta [libroTrovato]="libroTrovato" *ngIf="libroTrovato.stato == 'libro disponibile'" > </app-presta>
-<app-elimina [libroTrovato]="libroTrovato" *ngIf="libroTrovato.stato == 'libro disponibile'"> </app-elimina>
+  <!--<app-elimina [libroTrovato]="libroTrovato" *ngIf="libroTrovato.stato == 'libro disponibile'"> </app-elimina>-->
 <app-restituisci [libroTrovato]="libroTrovato" *ngIf="libroTrovato.stato == 'libro prestato'"> </app-restituisci>
 <br>
 <br>
