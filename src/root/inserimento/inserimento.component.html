@@ -1,14 +1,19 @@
 
 <h4> Inserisci un libro: </h4>
-<input class="field" type="text" id="titolo" placeholder="Titolo"/><br />
-<input class="field" id="autore" type="text"  placeholder="Autore"/> <br />
-<input class="field" type="text" id="posizione" placeholder="Posizione"/> <br />
-
-<div>
-<button class="button1" type="submit" (click)="inserisci()">Inserisci</button>
-<a> {{messaggio}} </a>
+<div *ngIf = "inserito == true">
+  <input class="field" type="text" id="titolo" placeholder="Titolo"/>
+  <br>
+  <input class="field" id="autore" type="text"  placeholder="Autore"/> <br>
+  <input class="field" type="text" id="posizione" placeholder="Posizione"/> 
+  <br>
+  <br>
+  <div>
+  <button class="button1" (click)="inserisci()">Inserisci</button>
+  </div>
+<div *ngIf = "!inserito">    
+<p> {{messaggio}} </p>
 <br>
-<button (click)="clean()">Chiudi</button>
+<button (click)="clean()">Torna alla home</button>
 </div>
 
 <!--(keyup.enter)="onSubmit()"-->

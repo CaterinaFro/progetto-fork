@@ -2,8 +2,8 @@
   <U>BIBLIOTECA</U>
 </h3>
 <div *ngIf="view =='home'">
-  <button (click)="ricerca()">Ricerca</button>
-  <button (click)="inserimento()">Inserimento</button> 
+  <button (click)="ricerca()">Ricerca libro</button>
+  <button (click)="inserimento()">Inserisci libro</button> 
 </div>
   <app-ricerca *ngIf="view =='ricerca'" (sezioneEvent) = "CleanEvent($event)">
   </app-ricerca>

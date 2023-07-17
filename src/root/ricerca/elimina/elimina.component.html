@@ -1,0 +1,6 @@
+<div *ngIf="!op_effettuata">
+<button (click)="elimina()">Elimina libro</button>
+</div>
+<div *ngIf="op_effettuata">
+  <p><b>{{ messaggio }}</b></p>
+</div>

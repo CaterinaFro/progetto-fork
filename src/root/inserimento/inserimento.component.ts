@@ -18,7 +18,8 @@ export class InserimentoComponent {
   @Output() sezioneEvent = new EventEmitter<boolean>();
   @Output() nuovoLibroEvent = new EventEmitter<Libro>(); 
   //errore : string = '';
-  messaggio : string = ''
+  messaggio : string = '';
+  inserito : boolean = true;
 
   constructor(private dbls: DbLibriService) { } 
 
@@ -56,6 +57,7 @@ export class InserimentoComponent {
         this.dbls.setData(archivioAttuale.libri).subscribe({
         next: (x: AjaxResponse<any>) => {
           this.messaggio = 'libro inserito';
+          this.inserito = false;
           return;
         },
         error: (err) =>
