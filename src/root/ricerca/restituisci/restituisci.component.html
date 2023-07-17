@@ -1,2 +1,7 @@
-<!--<p> Questo libro risulta in prestito: </p>
-<button (click)="restituisci()">Restituisci</button>-->
+<div *ngIf="prestato" id="non_disponibile">
+<p><font color="red"><b>Libro attualmente non disponibile:</b></font></p><button (click)="restituisci()">Restituisci</button>
+</div>
+
+<div *ngIf="!prestato">
+  <p><b>{{ messaggio }}</b></p>
+</div>

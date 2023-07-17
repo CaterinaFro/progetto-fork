@@ -1,3 +1,10 @@
-<!--<p> Questo libro è disponibile: </p>
-<button (click)="presta()">Prestito</button>
-<button (click)="elimina()">Elimina</button>-->
+<div *ngIf="!libroPrestato" id="disponibile">
+
+  <p><font color="green"><b>Questo libro è disponibile:</b></font></p>
+  <button (click)="presta()">Prestito</button>
+  <!--<button (click)="elimina()">Elimina</button>-->
+</div>
+
+<div *ngIf="libroPrestato">
+  <p><b>{{ messaggio }}</b></p>
+</div>

@@ -17,21 +17,18 @@ import {RestituisciComponent} from './restituisci/restituisci.component';
   standalone: true,
   providers: [DbLibriService]
 })
-export class RicercaComponent implements OnInit{
+export class RicercaComponent{
   @Output() sezioneEvent = new EventEmitter<boolean>();
   //@Output() libroEvent = new EventEmitter<Array<Libro>>();
 
   risultati : Array<Libro> = [];
   vuoto : string = "";
   digitazione : string = "";
-  libroTrovato: Libro = new Libro("", "", "", true);
+  libroTrovato: Libro = new Libro("", "", "", "");
   risultato : boolean = false;
 
   
 constructor(private dbls: DbLibriService) { }
-
-  ngOnInit() {
-  }
 
   clean() {
     this.sezioneEvent.emit(true);
@@ -50,10 +47,10 @@ constructor(private dbls: DbLibriService) { }
       next: (x: AjaxResponse<any>) => {
       var libriPresenti = JSON.parse(x.response);
       var archivioAttuale: Archivio =  new Archivio(libriPresenti);
-      this.risultati = archivioAttuale.libri.filter((libro: Libro) => (libro.titolo+libro.autore).toLowerCase().includes(this.digitazione.toLocaleLowerCase()));
+      this.risultati = archivioAttuale.libri.filter((libro: Libro) => (libro.titolo+libro.autore+libro.posizione).toLowerCase().includes(this.digitazione.toLocaleLowerCase()));
       if (this.risultati.length === 1) {
         this.libroTrovato = this.risultati[0];
-        this.risultato = true;
+        this.risultato = true; //ha senso?
 
       }
 

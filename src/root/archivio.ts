@@ -10,8 +10,8 @@ export class Archivio {
     this.libri.push(libro);
   }
 
-  eliminazione(libro: Libro){
-    this.libri = this.libri.filter((element) => element.posizione != libro.posizione);
-  }
+  //eliminazione(libro: Libro){
+    //this.libri = this.libri.filter((element) => element.posizione != libro.posizione);
+  //}
 
 }

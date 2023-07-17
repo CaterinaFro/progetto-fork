@@ -1,19 +1,20 @@
 
-<div *ngIf = "risultato === false">
-  <h4> Ricerca libro: </h4>
-  <input (input) = "ricercalibro()" id="campo-ricerca" placeholder="Cerca un libro">
-</div>
+<div *ngIf="!(risultati.length == 1 && risultato === true)">
+  <div id = "intro">
+    <h4> Ricerca libro: </h4>
+    <input (input) = "ricercalibro()" id="campo-ricerca" placeholder="Cerca un libro">
+  </div>
 
 <p *ngIf ='digitazione !== "" && risultati.length >= 0 && risultati.length != 1'>Libri trovati: {{risultati.length}}</p>
-<!--<app-visualizzazione [libroTrovato]="libroTrovato" *ngIf="risultati.length == 1"> </app-visualizzazione>-->
-<br>
+</div>
 <div *ngIf ="risultati.length == 1 && risultato === true" >
   <h3> Libro trovato: </h3>
-  <p><em>{{ libroTrovato.titolo }}</em></p>
-  <p>{{ libroTrovato.autore }}</p>
+  <hr>
+  <p><em>{{ libroTrovato.titolo }}</em> - {{ libroTrovato.autore }}</p>
+  <p> posizione: {{ libroTrovato.posizione }} </p>
 </div>
-<!-- <app-presta [libroTrovato]="libroTrovato" *ngIf="libroTrovato.disponibile"> </app-presta>
-  <app-restituisci [libroTrovato]="libroTrovato" *ngIf="libroTrovato.disponibile"> </app-restituisci> -->
+<app-presta [libroTrovato]="libroTrovato" *ngIf="libroTrovato.stato == 'libro disponibile'"> </app-presta>
+<app-restituisci [libroTrovato]="libroTrovato" *ngIf="libroTrovato.stato == 'libro prestato'"> </app-restituisci>
 <br>
 <br>
 <button (click)="clean()">Chiudi</button>

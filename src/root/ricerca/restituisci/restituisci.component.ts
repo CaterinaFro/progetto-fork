@@ -13,12 +13,41 @@ import {CommonModule} from '@angular/common'
   providers: [DbLibriService],
   imports: [CommonModule]
 })
-export class RestituisciComponent implements OnInit {
+export class RestituisciComponent{
   //@Output() sezioneEvent = new EventEmitter<boolean>();
-  @Input() libroTrovato: Libro = new Libro("", "", "", true); //true???
-  constructor() { }
+  @Input() libroTrovato: Libro = new Libro("", "", "", "");
+  messaggio : string = '';
+  prestato: boolean = true; 
+  
+  constructor(private dbls: DbLibriService) { }
 
-  ngOnInit() {
+  restituisci () {
+    this.dbls.getData().subscribe({
+      next: (x: AjaxResponse<any>) => {
+        //associo ad una variabile l'array di documenti scaricato e lo rendo una stringa di tipo JSON
+        var libriPresenti = JSON.parse(x.response);
+  
+        var archivioAttuale: Archivio =  new Archivio(libriPresenti);
+        archivioAttuale.libri.map(
+          (libro) => {
+            if (libro.posizione == this.libroTrovato.posizione ){
+            libro.stato = 'libro disponibile'}
+            });
+//rimetto la libreria aggiornata
+        this.dbls.setData(archivioAttuale.libri).subscribe({
+          next: (x: AjaxResponse<any>) => {
+            this.messaggio = 'libro restituito';
+            this.prestato = false;
+          return;
+          },
+          error: (err) =>
+            console.error('Observer got an error: ' + JSON.stringify(err)),
+          });
+      
+        },
+      error: (err) =>
+        console.error('Observer got an error: ' + JSON.stringify(err)),
+  });
   }
 
 }

@@ -33,9 +33,9 @@ export class InserimentoComponent {
     var titolo: HTMLInputElement = document.getElementById('titolo') as HTMLInputElement;
     var autore: HTMLInputElement = document.getElementById('autore') as HTMLInputElement;
     var posizione: HTMLInputElement = document.getElementById('posizione') as HTMLInputElement;
-    var disponibile: boolean = true;
+    var stato: string = "libro disponibile";
 
-    var nuovoLibro : Libro = new Libro(titolo.value, autore.value, posizione.value, disponibile)
+    var nuovoLibro : Libro = new Libro(titolo.value, autore.value, posizione.value, stato)
     
     // richiedo l'archivio 
     this.dbls.getData().subscribe({
