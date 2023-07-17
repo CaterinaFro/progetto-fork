@@ -16,7 +16,7 @@ import {CommonModule} from '@angular/common'
 })
 export class InserimentoComponent {
   @Output() sezioneEvent = new EventEmitter<boolean>();
-  @Output() nuovoLibroEvent = new EventEmitter<Libro>(); 
+  @Output() nuovoLibroEvent = new EventEmitter<Libro>(); //?
   //errore : string = '';
   messaggio : string = '';
   inserito : boolean = true;
@@ -56,8 +56,9 @@ export class InserimentoComponent {
         //this.errorMsg = "";
         this.dbls.setData(archivioAttuale.libri).subscribe({
         next: (x: AjaxResponse<any>) => {
-          this.messaggio = 'libro inserito';
           this.inserito = false;
+          this.messaggio = 'libro inserito';
+          
           return;
         },
         error: (err) =>
