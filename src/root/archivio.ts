@@ -9,9 +9,4 @@ export class Archivio {
   inserimento(libro: Libro){
     this.libri.push(libro);
   }
-
-  //eliminazione(libro: Libro){
-    //this.libri = this.libri.filter((element) => element.posizione != libro.posizione);
-  //}
-
 }

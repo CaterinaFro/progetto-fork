@@ -16,7 +16,6 @@ import {CommonModule} from '@angular/common'
 })
 export class InserimentoComponent {
   @Output() sezioneEvent = new EventEmitter<boolean>();
-  //@Output() nuovoLibroEvent = new EventEmitter<Libro>(); //??
   messaggio : string = '';
   inserito : boolean = true;
 
@@ -39,24 +38,21 @@ export class InserimentoComponent {
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
         //array di documenti scaricato => stringa di tipo JSON 
-        var libriPresenti  = JSON.parse(x.response) || [];    //PERCHEEEEEEE
-        // nuovo archivio con libri = libri presenti
+        var libriPresenti  = JSON.parse(x.response);
+        // nuovo archivio con libri scaricati
         var archivioAttuale: Archivio =  new Archivio(libriPresenti);
-        //archivioAttuale.libri.push(nuovoLibro)
+        //inserisco nuovo libro nell'archivio
         archivioAttuale.inserimento(nuovoLibro)
-        //errore: string = "";
-        //library.adapt(booklist);
-        //controllo che all'interno della libreria non ci sia già un libro a quella posizione
-        //if (library.libri.some((el) => el.posizione == posizione.value)){
-        //  this.errore = "Questa posizione è già occupata da un altro libro";
-        //} else {
-        //this.errorMsg = "";
+        //ricarico l'archivio aggiornato
         this.dbls.setData(archivioAttuale.libri).subscribe({
         next: (x: AjaxResponse<any>) => {
           this.inserito = false;
-          this.messaggio = 'libro inserito';
+          this.messaggio = 'libro inserito!';
+          setInterval (() => {
+            this.messaggio = ''
+            },2000)
+            return;
           
-          return;
         },
         error: (err) =>
           console.error('La richiesta ha generato un errore: ' + JSON.stringify(err))
@@ -73,12 +69,12 @@ export class InserimentoComponent {
       posizione.value = "";
 
     }
-}
+
   
-  /*svuotaArchivio() {
+  svuotaArchivio() {
     this.dbls.getData().subscribe({
-      next: (response) => {
-        const libriPresenti = JSON.parse(response.response) || [];
+      next: (x: AjaxResponse<any>) => {
+        const libriPresenti = JSON.parse(x.response);
         const emptyArchivio = new Archivio([]); // Create a new empty archivio
   
       this.dbls.setData(emptyArchivio.libri).subscribe({
@@ -96,7 +92,7 @@ export class InserimentoComponent {
       });
     }
 }
-*/
+
 
 
 //METTERE CONDIZIONI X NON LASCIARE CAMPI VUOTI

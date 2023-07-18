@@ -13,9 +13,7 @@ import {CommonModule} from '@angular/common'
   imports: [CommonModule]
 })
 export class PrestaComponent {
-  //@Output() sezioneEvent = new EventEmitter<boolean>();
   @Input() libroTrovato: Libro = new Libro("", "", "", "");
-  //@Output() libroPrestatoEvent = new EventEmitter<boolean>();//x far comunicare presta-elimina
 
   messaggio : string = '';
   op_effettuata: boolean = false;

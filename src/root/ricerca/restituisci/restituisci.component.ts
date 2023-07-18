@@ -14,7 +14,6 @@ import {CommonModule} from '@angular/common'
   imports: [CommonModule]
 })
 export class RestituisciComponent{
-  //@Output() sezioneEvent = new EventEmitter<boolean>();
   @Input() libroTrovato: Libro = new Libro("", "", "", "");
   messaggio : string = '';
   prestato: boolean = true; 
@@ -33,7 +32,7 @@ export class RestituisciComponent{
             if (libro.posizione == this.libroTrovato.posizione ){
             libro.stato = 'libro disponibile'}
             });
-//rimetto la libreria aggiornata
+        //rimetto la libreria aggiornata
         this.dbls.setData(archivioAttuale.libri).subscribe({
           next: (x: AjaxResponse<any>) => {
             this.messaggio = 'libro restituito';

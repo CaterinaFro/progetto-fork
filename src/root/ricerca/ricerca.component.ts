@@ -19,8 +19,6 @@ import {RestituisciComponent} from './restituisci/restituisci.component';
 })
 export class RicercaComponent{
   @Output() sezioneEvent = new EventEmitter<boolean>();
-  //@Output() libroEvent = new EventEmitter<Array<Libro>>();
-
   risultati : Array<Libro> = [];
   vuoto : string = "";
   digitazione : string = "";
