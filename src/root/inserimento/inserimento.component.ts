@@ -74,6 +74,29 @@ export class InserimentoComponent {
 
     }
 }
+  
+  /*svuotaArchivio() {
+    this.dbls.getData().subscribe({
+      next: (response) => {
+        const libriPresenti = JSON.parse(response.response) || [];
+        const emptyArchivio = new Archivio([]); // Create a new empty archivio
+  
+      this.dbls.setData(emptyArchivio.libri).subscribe({
+        next: () => {
+          console.log('Archivio svuotato con successo.');
+        },
+        error: (err) => {
+          console.error('Errore durante lo svuotamento dell\'archivio: ' + JSON.stringify(err));
+        }
+    });
+  },
+      error: (err) => {
+          console.error('Errore durante l\'ottenimento dell\'archivio: ' + JSON.stringify(err));
+        }
+      });
+    }
+}
+*/
 
 
 //METTERE CONDIZIONI X NON LASCIARE CAMPI VUOTI

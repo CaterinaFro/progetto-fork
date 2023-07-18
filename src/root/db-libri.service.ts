@@ -1,8 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { Libro } from './libro';
+import { Archivio } from './archivio';
 //classi
 
 @Injectable()
@@ -28,3 +29,10 @@ Observable<AjaxResponse<any>> {
     });
   }
 }
+
+
+
+
+
+
+
