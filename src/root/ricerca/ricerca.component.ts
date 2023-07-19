@@ -20,11 +20,8 @@ import {RestituisciComponent} from './restituisci/restituisci.component';
 export class RicercaComponent{
   @Output() sezioneEvent = new EventEmitter<boolean>();
   risultati : Array<Libro> = [];
-  vuoto : string = "";
   digitazione : string = "";
   libroTrovato: Libro = new Libro("", "", "", "");
-  risultato : boolean = false;
-
   
 constructor(private dbls: DbLibriService) { }
 
@@ -34,12 +31,8 @@ constructor(private dbls: DbLibriService) { }
 
 
   ricercalibro() {
-    // controllo che se l'input è vuoto l'elenco libri venga svuotato per non mostrarli
     var cerca: HTMLInputElement = document.getElementById('campo-ricerca') as HTMLInputElement;
     this.digitazione = cerca.value
-    if (this.digitazione == "") {
-      this.risultati = [];
-      return;}
     
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
@@ -48,7 +41,6 @@ constructor(private dbls: DbLibriService) { }
       this.risultati = archivioAttuale.libri.filter((libro: Libro) => (libro.titolo+libro.autore+libro.posizione).toLowerCase().includes(this.digitazione.toLocaleLowerCase()));
       if (this.risultati.length === 1) {
         this.libroTrovato = this.risultati[0];
-        this.risultato = true; //ha senso?
 
       }
 

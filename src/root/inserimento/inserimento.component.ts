@@ -17,7 +17,9 @@ import {CommonModule} from '@angular/common'
 export class InserimentoComponent {
   @Output() sezioneEvent = new EventEmitter<boolean>();
   messaggio : string = '';
+  messaggio1 : string = '';
   inserito : boolean = true;
+  svuota: boolean = false;
 
   constructor(private dbls: DbLibriService) { } 
 
@@ -31,7 +33,7 @@ export class InserimentoComponent {
     var autore: HTMLInputElement = document.getElementById('autore') as HTMLInputElement;
     var posizione: HTMLInputElement = document.getElementById('posizione') as HTMLInputElement;
     var stato: string = "libro disponibile";
-
+ 
     var nuovoLibro : Libro = new Libro(titolo.value, autore.value, posizione.value, stato)
     
     // richiedo l'archivio 
@@ -75,25 +77,22 @@ export class InserimentoComponent {
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
         const libriPresenti = JSON.parse(x.response);
-        const emptyArchivio = new Archivio([]); // Create a new empty archivio
+        const ArchivioVuoto = new Archivio([]); // Create a new empty archivio
   
-      this.dbls.setData(emptyArchivio.libri).subscribe({
+      this.dbls.setData(ArchivioVuoto.libri).subscribe({
         next: () => {
-          console.log('Archivio svuotato con successo.');
+          this.messaggio1 = 'Archivio svuotato con successo';
+          this.svuota = true;
         },
         error: (err) => {
-          console.error('Errore durante lo svuotamento dell\'archivio: ' + JSON.stringify(err));
+          console.error('La richiesta ha generato un errore: ' + JSON.stringify(err));
         }
     });
   },
       error: (err) => {
-          console.error('Errore durante l\'ottenimento dell\'archivio: ' + JSON.stringify(err));
+          console.error('La richiesta ha generato un errore: ' + JSON.stringify(err));
         }
       });
     }
 }
 
-
-
-//METTERE CONDIZIONI X NON LASCIARE CAMPI VUOTI
-//METTERE CONTROLLO SU POSIZIONE CHE DEVE ESSERE UNIVOCA

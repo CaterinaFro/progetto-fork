@@ -1,18 +1,18 @@
 
-<div *ngIf="!(risultati.length == 1 && risultato === true)">
+<div *ngIf="!(risultati.length == 1)">
   <div id = "intro">
     <h4> Ricerca libro: </h4>
     <input (input) = "ricercalibro()" id="campo-ricerca" placeholder="Cerca un libro">
+    <p *ngIf ='digitazione !== "" && risultati.length >= 0 && risultati.length != 1'>Libri trovati: {{risultati.length}}</p>
   </div>
-
-<p *ngIf ='digitazione !== "" && risultati.length >= 0 && risultati.length != 1'>Libri trovati: {{risultati.length}}</p>
 </div>
-<div *ngIf ="risultati.length == 1 && risultato === true" >
+<div *ngIf ="risultati.length == 1" >
   <h3> Libro trovato: </h3>
   <hr>
   <p><em>{{ libroTrovato.titolo }}</em> - {{ libroTrovato.autore }}</p>
   <p> posizione: {{ libroTrovato.posizione }} </p>
 </div>
+
 <app-presta [libroTrovato]="libroTrovato" *ngIf="libroTrovato.stato == 'libro disponibile'" > </app-presta>
 <app-restituisci [libroTrovato]="libroTrovato" *ngIf="libroTrovato.stato.includes('libro prestato')"> </app-restituisci>
 <br>
