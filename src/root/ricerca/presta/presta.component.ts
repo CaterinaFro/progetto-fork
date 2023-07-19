@@ -19,11 +19,17 @@ export class PrestaComponent {
   op_effettuata: boolean = false;
   eliminato: boolean = false;
   prestato: boolean = false;
+  nome: boolean = false;
 
 
   constructor(private dbls: DbLibriService) { }
 
+  insert_nome() {
+    this.nome = true;
+  }
+
   presta() {
+    var nominativo: HTMLInputElement = document.getElementById('nominativo') as HTMLInputElement;;
   // richiedo l'archivio vuoto
   this.dbls.getData().subscribe({
     next: (x: AjaxResponse<any>) => {
@@ -35,15 +41,16 @@ export class PrestaComponent {
       archivioAttuale.libri.map(
         (libro: Libro) => {
           if (libro.posizione == this.libroTrovato.posizione ){
-          libro.stato= "libro prestato"}
+          libro.stato= "libro prestato a " + nominativo.value}
           });
 
       //rimetto la libreria aggiornata
       this.dbls.setData(archivioAttuale.libri).subscribe({
         next: (x: AjaxResponse<any>) => {
-          this.messaggio = 'libro prestato';
+          this.messaggio = 'libro prestato a ' + nominativo.value;
           this.op_effettuata = true;
           this.prestato =true;
+          this.nome = false;
         return;
         },
         error: (err) =>
@@ -73,6 +80,7 @@ export class PrestaComponent {
             this.messaggio = 'libro eliminato';
             this.op_effettuata = true;
             this.eliminato =true;
+            this.nome = false;
           return;
 
           },

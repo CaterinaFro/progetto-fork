@@ -1,11 +1,18 @@
 <div *ngIf="!op_effettuata">
-  <p><font color="green"><b>Questo libro è disponibile:</b></font></p>
-  <button (click)="presta()">Presta libro</button>
+  <p>stato: <font color="green">{{libroTrovato.stato}}</font></p>
+  <button (click)="insert_nome()">Presta libro</button>
   <button (click)="elimina()">Elimina libro</button>
 </div>
+<br>
+
+<div *ngIf="nome == true">
+  <input class="field" type="text" id="nominativo" placeholder="Nome prestatario"/>
+  <button (click)="presta()">conferma</button>
+
+</div>  
 
 <div *ngIf="op_effettuata && prestato">
-  <p><b>{{ messaggio }}</b></p>
+  <p><b>{{ messaggio }} </b></p>
 </div>
 
 <div *ngIf="op_effettuata && eliminato">

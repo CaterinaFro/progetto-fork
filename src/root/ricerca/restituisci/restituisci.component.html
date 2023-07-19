@@ -1,5 +1,5 @@
 <div *ngIf="prestato" id="non_disponibile">
-<p><font color="red"><b>Libro attualmente non disponibile:</b></font></p><button (click)="restituisci()">Restituisci</button>
+<p>stato: <font color="red">{{libroTrovato.stato}}</font></p><button (click)="restituisci()">Restituisci</button>
 </div>
 
 <div *ngIf="!prestato">
