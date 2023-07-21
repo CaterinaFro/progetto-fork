@@ -5,14 +5,14 @@ import {Libro} from '../../libro';
 import {Archivio} from '../../archivio';
 import {CommonModule} from '@angular/common'
 @Component({
-  selector: 'app-presta',
-  templateUrl: './presta.component.html',
-  styleUrls: ['./presta.component.css'],
+  selector: 'app-presta_elimina',
+  templateUrl: './presta_elimina.component.html',
+  styleUrls: ['./presta_elimina.component.css'],
   standalone: true,
   providers: [DbLibriService],
   imports: [CommonModule]
 })
-export class PrestaComponent {
+export class Presta_eliminaComponent {
   @Input() libroTrovato: Libro = new Libro("", "", "", "");
 
   messaggio : string = '';

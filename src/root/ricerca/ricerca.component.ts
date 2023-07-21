@@ -4,7 +4,7 @@ import { AjaxResponse } from 'rxjs/ajax';
 import {Libro} from '../libro';
 import {Archivio} from '../archivio';
 import {CommonModule} from '@angular/common'
-import {PrestaComponent} from './presta/presta.component';
+import {Presta_eliminaComponent} from './presta_elimina/presta_elimina.component';
 import {RestituisciComponent} from './restituisci/restituisci.component';
 //import {EliminaComponent} from './elimina/elimina.component';
 
@@ -13,7 +13,7 @@ import {RestituisciComponent} from './restituisci/restituisci.component';
   templateUrl: './ricerca.component.html',
   styleUrls: ['./ricerca.component.css'],
   imports: [
-    CommonModule, PrestaComponent, RestituisciComponent],
+    CommonModule, Presta_eliminaComponent, RestituisciComponent],
   standalone: true,
   providers: [DbLibriService]
 })
