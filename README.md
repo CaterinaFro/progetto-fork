@@ -1,6 +1,6 @@
 
 # Progetto di Sviluppo di Servizi Web 
-### Corso di Laurea Magistrale in Informatica Umanistica, UniPi
+##### Corso di Laurea Magistrale in Informatica Umanistica, UniPi
 [Caterina Frosali](https://github.com/CaterinaFro)
 
 Matricola: 645637
