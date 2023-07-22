@@ -63,7 +63,7 @@ export class Presta_eliminaComponent {
   });
   }
 
-  //metodo invocato al click di "elimina libro"
+  //metodo invocato al click di "elimina libro".
   elimina(){
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
