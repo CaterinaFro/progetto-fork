@@ -11,12 +11,3 @@
 <p> {{messaggio}} </p>
 </div>
 <button (click)="clean()">Torna alla home</button>
-<br>
-<br>
-<div *ngIf = "!svuota">
-<p>Svuota l'archivio prima di procedere all'inserimento:</p>
-<button class="button1" type="button" (click)="svuotaArchivio()">Svuota archivio</button>
-</div>
-<div *ngIf = "svuota">    
-<p> {{messaggio1}} </p>
-</div>

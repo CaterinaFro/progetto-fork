@@ -6,7 +6,6 @@ import {Archivio} from '../archivio';
 import {CommonModule} from '@angular/common'
 import {Presta_eliminaComponent} from './presta_elimina/presta_elimina.component';
 import {RestituisciComponent} from './restituisci/restituisci.component';
-//import {EliminaComponent} from './elimina/elimina.component';
 
 @Component({
   selector: 'app-ricerca',
@@ -18,15 +17,16 @@ import {RestituisciComponent} from './restituisci/restituisci.component';
   providers: [DbLibriService]
 })
 export class RicercaComponent{
-  @Output() sezioneEvent = new EventEmitter<boolean>();
+  @Output() sezioneEvent = new EventEmitter<string>();
   risultati : Array<Libro> = [];
   digitazione : string = "";
   libroTrovato: Libro = new Libro("", "", "", "");
   
 constructor(private dbls: DbLibriService) { }
 
+  
   clean() {
-    this.sezioneEvent.emit(true);
+    this.sezioneEvent.emit("home");
   }
 
 

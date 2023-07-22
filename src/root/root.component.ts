@@ -19,15 +19,14 @@ import {Archivio} from './archivio';
 })
 export class RootComponent implements OnInit {
   view: string = 'home';
-  sez: boolean = true;
   
-  constructor(private dbls: DbLibriService) { } //iniezione del servizio,
-                                                //si instanzia un parametro da passare nel momento della costruzione .
+  constructor(private dbls: DbLibriService) { }
 
 
   ngOnInit() {
   }
 
+  
   ricerca() {
     this.view = 'ricerca';
     
@@ -38,9 +37,8 @@ export class RootComponent implements OnInit {
 
   }
 
-  CleanEvent(x:boolean) {
-    this.view = 'home'; 
-    this.sez = x; 
+  CleanEvent(x:string) {
+    this.view = x; 
   }
   
 }

@@ -15,16 +15,15 @@ import {CommonModule} from '@angular/common'
   providers: [DbLibriService]
 })
 export class InserimentoComponent {
-  @Output() sezioneEvent = new EventEmitter<boolean>();
+  @Output() sezioneEvent = new EventEmitter<string>();
   messaggio : string = '';
-  messaggio1 : string = '';
   inserito : boolean = true;
-  svuota: boolean = false;
 
   constructor(private dbls: DbLibriService) { } 
 
+  //metodo per tornare a al click del bottone "Inserisci";
   clean() {
-    this.sezioneEvent.emit(true);
+    this.sezioneEvent.emit("home");
   }
 
   //metodo per l'inserimento invocato al click del bottone "Inserisci";
@@ -72,27 +71,5 @@ export class InserimentoComponent {
 
     }
 
-  
-  svuotaArchivio() {
-    this.dbls.getData().subscribe({
-      next: (x: AjaxResponse<any>) => {
-        const libriPresenti = JSON.parse(x.response);
-        const ArchivioVuoto = new Archivio([]); // Create a new empty archivio
-  
-      this.dbls.setData(ArchivioVuoto.libri).subscribe({
-        next: () => {
-          this.messaggio1 = 'Archivio svuotato con successo';
-          this.svuota = true;
-        },
-        error: (err) => {
-          console.error('La richiesta ha generato un errore: ' + JSON.stringify(err));
-        }
-    });
-  },
-      error: (err) => {
-          console.error('La richiesta ha generato un errore: ' + JSON.stringify(err));
-        }
-      });
-    }
-}
+  }
 

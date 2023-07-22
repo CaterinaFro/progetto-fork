@@ -13,6 +13,7 @@ import {CommonModule} from '@angular/common'
   imports: [CommonModule]
 })
 export class Presta_eliminaComponent {
+  // prendo dal component padre "ricerca" il libro selezionato
   @Input() libroTrovato: Libro = new Libro("", "", "", "");
 
   messaggio : string = '';
