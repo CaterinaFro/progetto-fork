@@ -4,6 +4,7 @@
 [Caterina Frosali](https://github.com/CaterinaFro)
 
 Matricola: 645637
+
 Email: c.frosali@studenti.unipi.it
 
 Generalità progetto:
