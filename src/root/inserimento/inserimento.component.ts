@@ -21,7 +21,7 @@ export class InserimentoComponent {
 
   constructor(private dbls: DbLibriService) { } 
 
-  //metodo che invoco con bottone "torna alla home" e trasferisce l'info al parent root
+  //metodo che invoco con bottone "torna alla home" emette al componente root (genitore) la stringa "home"
   clean() {
     this.sezioneEvent.emit("home");
   }
@@ -32,18 +32,16 @@ export class InserimentoComponent {
     var autore: HTMLInputElement = document.getElementById('autore') as HTMLInputElement;
     var posizione: HTMLInputElement = document.getElementById('posizione') as HTMLInputElement;
     var stato: string = "libro disponibile";
- 
+    //inizializzo un libro che verrà creato ogni volta con i dati inseriti dell'utente e con lo stato impostato di default su "disponibile".
     var nuovoLibro : Libro = new Libro(titolo.value, autore.value, posizione.value, stato)
     
-    // richiedo l'archivio 
+   
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
-        //array di documenti scaricato => stringa di tipo JSON 
         var libriPresenti  = JSON.parse(x.response);
-        // nuovo archivio con libri scaricati
         var archivioAttuale: Archivio =  new Archivio(libriPresenti);
-        //inserisco nuovo libro nell'archivio
         archivioAttuale.inserimento(nuovoLibro)
+        
         //ricarico l'archivio aggiornato
         this.dbls.setData(archivioAttuale.libri).subscribe({
         next: (x: AjaxResponse<any>) => {
@@ -52,19 +50,18 @@ export class InserimentoComponent {
           setInterval (() => {
             this.messaggio = ''
             },2000)
-            return;
-          
+            return;  
         },
         error: (err) =>
           console.error('La richiesta ha generato un errore: ' + JSON.stringify(err))
-  
         })
-    },
+    
+      },
       error: (err) =>
         console.error('La richiesta ha generato un errore: ' + JSON.stringify(err))
       });
   
-
+      //si svuotano i capi di iserimento
       titolo.value = "";
       autore.value = "";
       posizione.value = "";

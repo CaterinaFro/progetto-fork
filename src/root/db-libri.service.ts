@@ -1,10 +1,8 @@
-
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { Libro } from './libro';
 import { Archivio } from './archivio';
-//classi
 
 @Injectable()
 export class DbLibriService {

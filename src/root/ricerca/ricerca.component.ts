@@ -24,7 +24,7 @@ export class RicercaComponent{
   
 constructor(private dbls: DbLibriService) { }
 
-  //metodo che invoco con bottone "torna alla home" e trasferisce l'info al parent root 
+  //metodo che invoco con bottone "torna alla home" emette al componente root (genitore) la stringa "home"
   clean() {
     this.sezioneEvent.emit("home");
   }
@@ -32,13 +32,16 @@ constructor(private dbls: DbLibriService) { }
   //metodo per la ricerca invocato al click del bottone "Ricerca libro";
   ricercalibro() {
     var cerca: HTMLInputElement = document.getElementById('campo-ricerca') as HTMLInputElement;
+    //salvo nella stringa digitazione il contenuto del campo input
     this.digitazione = cerca.value
     
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
       var libriPresenti = JSON.parse(x.response);
       var archivioAttuale: Archivio =  new Archivio(libriPresenti);
+      //salvo sull'array di libri "risultati" i libri che hanno corrispondenza con la digitazione
       this.risultati = archivioAttuale.libri.filter((libro: Libro) => (libro.titolo+libro.autore+libro.posizione).toLowerCase().includes(this.digitazione.toLocaleLowerCase()));
+      //se si trova un libro, si memorizza nella variabile libroTrovato
       if (this.risultati.length === 1) {
         this.libroTrovato = this.risultati[0];
 

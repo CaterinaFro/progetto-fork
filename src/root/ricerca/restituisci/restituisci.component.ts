@@ -26,14 +26,14 @@ export class RestituisciComponent{
       next: (x: AjaxResponse<any>) => {
         //associo ad una variabile l'array di documenti scaricato e lo rendo una stringa di tipo JSON
         var libriPresenti = JSON.parse(x.response);
-  
         var archivioAttuale: Archivio =  new Archivio(libriPresenti);
+        // itero tramite map sui libri dell'archivio e quando trovo il libro che voglio restituire, cambio lo stato
         archivioAttuale.libri.map(
-          (libro) => {
+          (libro:Libro) => {
             if (libro.posizione == this.libroTrovato.posizione ){
             libro.stato = 'libro disponibile'}
             });
-        //rimetto la libreria aggiornata
+        //invio l'archivio aggiornato e modifico variabili per cambiare visualizzazione
         this.dbls.setData(archivioAttuale.libri).subscribe({
           next: (x: AjaxResponse<any>) => {
             this.messaggio = 'libro restituito';

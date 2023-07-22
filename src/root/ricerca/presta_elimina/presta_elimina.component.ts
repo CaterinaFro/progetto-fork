@@ -25,27 +25,27 @@ export class Presta_eliminaComponent {
 
   constructor(private dbls: DbLibriService) { }
 
+  //metodo invocato al click di "Presta libro", permette di visualizzare l'input per inserire il nome del prestatario
   insert_nome() {
     this.nome = true;
   }
 
+  //metodo invocato al click di "conferma",
   presta() {
     var nominativo: HTMLInputElement = document.getElementById('nominativo') as HTMLInputElement;;
-  // richiedo l'archivio vuoto
+
   this.dbls.getData().subscribe({
     next: (x: AjaxResponse<any>) => {
-      //associo ad una variabile l'array di documenti scaricato e lo rendo una stringa di tipo JSON
       var libriPresenti = JSON.parse(x.response);
-
       var archivioAttuale: Archivio =  new Archivio(libriPresenti);
-      // creo la libreria con l'elenco dei libri controllando tramite map la posizione del documento
+      // itero tramite map sui libri dell'archivio e quando trovo il libro che voglio prestare, cambio lo stato inserendo il prestatario
       archivioAttuale.libri.map(
         (libro: Libro) => {
           if (libro.posizione == this.libroTrovato.posizione ){
           libro.stato= "libro prestato a " + nominativo.value}
           });
 
-      //rimetto la libreria aggiornata
+      //invio l'archivio aggiornato e modifico variabili per cambiare visualizzazione
       this.dbls.setData(archivioAttuale.libri).subscribe({
         next: (x: AjaxResponse<any>) => {
           this.messaggio = 'libro prestato a ' + nominativo.value;
@@ -64,18 +64,16 @@ export class Presta_eliminaComponent {
   }
 
   elimina(){
-    // richiedo l'archivio vuoto
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
-        //associo ad una variabile l'array di documenti scaricato e lo rendo una stringa di tipo JSON
         var libriPresenti = JSON.parse(x.response);
         var archivioAttuale: Archivio =  new Archivio(libriPresenti);
-        // creo la libreria con l'elenco dei libri controllando tramite filter tutti gli elementi che hanno posizione diversa da quella selezionata
+        //si crea una nuova lib, lasciando attraverso filter tutti i libri tranne quello selezionato
         var nuova_lib = archivioAttuale.libri.filter(
           (libro: Libro) => libro.posizione != this.libroTrovato.posizione
         );
 
-        //ricarico la nuova libreria tramite la SET
+        //invio l'archivio aggiornato e modifico variabili per cambiare visualizzazione
         this.dbls.setData(nuova_lib).subscribe({
           next: (x: AjaxResponse<any>) => {
             this.messaggio = 'libro eliminato';
