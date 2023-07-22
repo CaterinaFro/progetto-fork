@@ -21,12 +21,12 @@ export class InserimentoComponent {
 
   constructor(private dbls: DbLibriService) { } 
 
-  //metodo per tornare a al click del bottone "Inserisci";
+  //metodo che invoco con bottone "torna alla home" e trasferisce l'info al parent root
   clean() {
     this.sezioneEvent.emit("home");
   }
 
-  //metodo per l'inserimento invocato al click del bottone "Inserisci";
+  //metodo per l'inserimento invocato al click del bottone "Inserisci libro";
   inserisci () {
     var titolo: HTMLInputElement = document.getElementById('titolo') as HTMLInputElement;
     var autore: HTMLInputElement = document.getElementById('autore') as HTMLInputElement;

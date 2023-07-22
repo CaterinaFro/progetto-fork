@@ -24,12 +24,12 @@ export class RicercaComponent{
   
 constructor(private dbls: DbLibriService) { }
 
-  
+  //metodo che invoco con bottone "torna alla home" e trasferisce l'info al parent root 
   clean() {
     this.sezioneEvent.emit("home");
   }
 
-
+  //metodo per la ricerca invocato al click del bottone "Ricerca libro";
   ricercalibro() {
     var cerca: HTMLInputElement = document.getElementById('campo-ricerca') as HTMLInputElement;
     this.digitazione = cerca.value
