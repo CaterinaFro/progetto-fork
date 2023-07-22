@@ -61,7 +61,7 @@ export class InserimentoComponent {
         console.error('La richiesta ha generato un errore: ' + JSON.stringify(err))
       });
   
-      //si svuotano i capi di iserimento
+      //si svuotano i capi di inserimento
       titolo.value = "";
       autore.value = "";
       posizione.value = "";

@@ -30,7 +30,7 @@ export class Presta_eliminaComponent {
     this.nome = true;
   }
 
-  //metodo invocato al click di "conferma",
+  //metodo invocato al click di "conferma"
   presta() {
     var nominativo: HTMLInputElement = document.getElementById('nominativo') as HTMLInputElement;;
 
@@ -63,6 +63,7 @@ export class Presta_eliminaComponent {
   });
   }
 
+  //metodo invocato al click di "elimina libro"
   elimina(){
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {

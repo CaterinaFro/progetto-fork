@@ -21,6 +21,7 @@ export class RestituisciComponent{
   
   constructor(private dbls: DbLibriService) { }
 
+  //metodo invocato al click di "restituisci libro"
   restituisci () {
     this.dbls.getData().subscribe({
       next: (x: AjaxResponse<any>) => {
